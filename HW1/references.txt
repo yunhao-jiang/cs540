@@ -1,0 +1,4 @@
+Artificial neural network. (2023). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Artificial_neural_network&oldid=1135068623
+Oremus, W. (2022, June 28). Analysis | Google’s AI passed a famous test—And showed how the test is broken. Washington Post. https://www.washingtonpost.com/technology/2022/06/17/google-ai-lamda-turing-test/
+Yalalov, D. (2022, December 8). ChatGPT passes the Turing test. Metaverse Post. https://mpost.io/chatgpt-passes-the-turing-test/
+ChatGPT https://chat.openai.com
