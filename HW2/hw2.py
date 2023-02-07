@@ -50,12 +50,22 @@ def shred(filename):
 
 
 def x_log_p(i,p):
-    return round(letter_dict[chr(i+65)] * math.log(p[i]),4)
+    return letter_dict[chr(i+65)] * math.log(p[i])
 
+
+def find_f_value(alpha_prob_list, const_prob):
+    sum = 0
+    for i in range(0,26):
+        sum += x_log_p(i,alpha_prob_list)
+    return math.log(const_prob) + sum
+
+
+E_PROB = 0.6
+S_PROB = 0.4
 
 # Q1
 print("Q1")
-letter_dict = shred("samples/letter1.txt") # TODO: Change this to letter.txt when submit
+letter_dict = shred("samples/letter3.txt") # TODO: Change this to letter.txt when submit
 for key in letter_dict.keys():
     print(f"{key} {letter_dict[key]}")
 
@@ -64,5 +74,12 @@ print("Q2")
 vec = get_parameter_vectors()
 e_list = vec[0]
 s_list = vec[1]
-print(f"{x_log_p(0,e_list)}")
-print(f"{x_log_p(0,s_list)}")
+print(f"{round(x_log_p(0,e_list),4):.4f}")
+print(f"{round(x_log_p(0,s_list),4):.4f}")
+
+# Q3
+print("Q3")
+f_english = find_f_value(e_list,E_PROB)
+f_spanish = find_f_value(s_list,S_PROB)
+print(f"{round(f_english,4):.4f}")
+print(f"{round(f_spanish,4):.4f}")
