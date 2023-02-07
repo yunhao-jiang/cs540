@@ -49,12 +49,20 @@ def shred(filename):
     return X
 
 
+def x_log_p(i,p):
+    return round(letter_dict[chr(i+65)] * math.log(p[i]),4)
+
+
 # Q1
-letter_dict = shred("samples/letter2.txt") # TODO: Change this to letter.txt when submit]
 print("Q1")
+letter_dict = shred("samples/letter1.txt") # TODO: Change this to letter.txt when submit
 for key in letter_dict.keys():
     print(f"{key} {letter_dict[key]}")
 
 # Q2
-
-
+print("Q2")
+vec = get_parameter_vectors()
+e_list = vec[0]
+s_list = vec[1]
+print(f"{x_log_p(0,e_list)}")
+print(f"{x_log_p(0,s_list)}")
