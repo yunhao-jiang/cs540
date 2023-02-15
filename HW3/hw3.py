@@ -27,7 +27,15 @@ def get_eig(S, m):
 
 
 def get_eig_prop(S, prop):
-    pass
+    """similar to get_eig, but instead of returning the first m, return all eigen- values and
+    corresponding eigenvectors in a similar format that explain more than a prop proportion of
+    the variance (specifically, please make sure the eigenvalues are returned in descending
+    order). """
+    sum = 0
+    for i in range(0,len(S)):
+        sum += S[i][i]
+    w, v = eigh(S, subset_by_value=(sum*prop, np.inf))
+    return np.diag(w[::-1]), v[:, ::-1]
 
 
 def project_image(image, U):
@@ -43,6 +51,9 @@ y = get_covariance(x)
 print(len(x))
 print(len(x[0]))
 print(np.average(x))
-Lambda, U = get_eig(y, 2)
+# Lambda, U = get_eig(y, 2)
+# print(Lambda)
+# print(U)
+Lambda, U = get_eig_prop(y, 0.07)
 print(Lambda)
 print(U)
