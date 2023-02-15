@@ -15,7 +15,7 @@ def load_and_center_dataset(filename):
 def get_covariance(dataset):
     """calculate and return the covariance matrix of the dataset as a numpy matrix (d×d array)."""
     # return np.cov(dataset)
-    return np.dot(np.transpose(dataset), dataset) / (len(dataset)-1)
+    return np.dot(np.transpose(dataset), dataset) / (len(dataset) - 1)
 
 
 def get_eig(S, m):
@@ -32,28 +32,35 @@ def get_eig_prop(S, prop):
     the variance (specifically, please make sure the eigenvalues are returned in descending
     order). """
     sum = 0
-    for i in range(0,len(S)):
+    for i in range(0, len(S)):
         sum += S[i][i]
-    w, v = eigh(S, subset_by_value=(sum*prop, np.inf))
+    w, v = eigh(S, subset_by_value=(sum * prop, np.inf))
     return np.diag(w[::-1]), v[:, ::-1]
 
 
 def project_image(image, U):
-    pass
+    """project the image into the m-dimensional subspace and then project back into d × 1
+    dimensions and return that """
+    return np.dot(np.dot(U, np.transpose(U)), image)
 
 
 def display_image(orig, proj):
-    pass
+    """use matplotlib to display a visual representation of the original image and the projected
+    image side-by-side with colorbar """
+    fig, (ax1, ax2) = plt.subplots(1, 2)
+    ax1.set_title('Original')
+    img1 = ax1.imshow(np.transpose(orig.reshape(32, 32)), aspect='equal')
+    fig.colorbar(img1, ax=ax1)
+
+    ax2.set_title('Projection')
+    img2 = ax2.imshow(np.transpose(proj.reshape(32, 32)), aspect='equal')
+    fig.colorbar(img2, ax=ax2)
+
+    plt.show()
 
 
 x = load_and_center_dataset('YaleB_32x32.npy')
-y = get_covariance(x)
-print(len(x))
-print(len(x[0]))
-print(np.average(x))
-# Lambda, U = get_eig(y, 2)
-# print(Lambda)
-# print(U)
-Lambda, U = get_eig_prop(y, 0.07)
-print(Lambda)
-print(U)
+S = get_covariance(x)
+Lambda, U = get_eig(S, 2)
+projection = project_image(x[0], U)
+display_image(x[0], projection)
