@@ -100,5 +100,4 @@ if __name__ == '__main__':
     features_and_names = [(calc_features(row), row['Name']) for row in
                           load_data('Pokemon.csv')[:10]]
     Z = hac([row[0] for row in features_and_names])
-    print(Z)
     imshow_hac(Z, [row[1] for row in features_and_names])
