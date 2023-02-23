@@ -68,7 +68,7 @@ def hac(features):
         Z[i, 1] = max(cluster_num)
         Z[i, 2] = min_dist
         Z[i, 3] = dict_num_in_cluster[cluster_num[0]] + dict_num_in_cluster[cluster_num[1]]
-        dict_num_in_cluster[len(features) + i] = Z[i, 3]
+        dict_num_in_cluster[len(features) + i] = int(Z[i, 3])
 
         # Merge the two clusters
         clusters = np.delete(clusters, min_cluster_index)
@@ -100,4 +100,5 @@ if __name__ == '__main__':
     features_and_names = [(calc_features(row), row['Name']) for row in
                           load_data('Pokemon.csv')[:10]]
     Z = hac([row[0] for row in features_and_names])
+    print(Z)
     imshow_hac(Z, [row[1] for row in features_and_names])
