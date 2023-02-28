@@ -3,11 +3,11 @@ from selenium.webdriver.common.by import By
 import csv
 
 
-def data_curation(from_year, to_year):
+def data_curation(from_year, to_year, file_name):
     # https://www.geeksforgeeks.org/how-to-use-xpath-with-beautifulsoup/
     driver = webdriver.Chrome()
     driver.get("https://www.aos.wisc.edu/~sco/lakes/Mendota-ice.html")
-    with open("hw5.csv", 'w') as file:
+    with open(file_name, 'w') as file:
         writer = csv.writer(file)
         writer.writerow(["year", "days"])
         num_centers = len(driver.find_elements(By.XPATH, "/html/body/center"))
@@ -66,4 +66,4 @@ def data_curation(from_year, to_year):
     driver.close()
 
 
-data_curation(1855, 2021)
+data_curation(1855, 2021, "hw5.csv")
