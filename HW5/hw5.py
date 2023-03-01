@@ -72,7 +72,7 @@ def q6(hat_beta):
     return -hat_beta[0] / hat_beta[1]
 
 
-file_name = "toy.csv"
+file_name = sys.argv[1]
 with open(file_name, 'r') as file:
     load_visualize(file)
     print("Q3a:")
