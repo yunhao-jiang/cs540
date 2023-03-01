@@ -6,6 +6,7 @@ import numpy as np
 years = []
 days = []
 
+
 def load_visualize(file):
     # draw plot with matplotlib
     reader = csv.reader(file)
@@ -24,7 +25,7 @@ def q3a():
     # vectorize each year into a feature vector
     X = np.array([[]], dtype=int).reshape(0, 2)
     for year in years:
-        vector = np.array([[1,year]])
+        vector = np.array([[1, year]])
         X = np.concatenate((X, vector), axis=0)
     return X
 
@@ -33,12 +34,54 @@ def q3b():
     return np.array(days)
 
 
+def q3c(X):
+    """compute X^T * X"""
+    return np.dot(X.T, X)
+
+
+def q3d(Z):
+    """compute (X^T * X)^-1"""
+    return np.linalg.inv(Z)
+
+
+def q3e(I):
+    """compute (X^T * X)^-1 * X^T"""
+    return np.dot(I, X.T)
+
+
+def q3f():
+    """compute (X^T * X)^-1 * X^T * Y"""
+    return np.dot(PI, Y)
+
+def q4(x):
+    return hat_beta[0] + hat_beta[1] * x
 
 file_name = "toy.csv"
 with open(file_name, 'r') as file:
     load_visualize(file)
     print("Q3a:")
-    print(q3a())
-    print("Q3b:")
-    print(q3b())
+    X = q3a()
+    print(X)
 
+    print("Q3b:")
+    Y = q3b()
+    print(Y)
+
+    print("Q3c:")
+    Z = q3c(X)
+    print(Z)
+
+    print("Q3d:")
+    I = q3d(Z)
+    print(I)
+
+    print("Q3e:")
+    PI = q3e(I)
+    print(PI)
+
+    print("Q3f:")
+    hat_beta = q3f()
+    print(hat_beta)
+
+    print("Q4:")
+    print(q4(2022))
