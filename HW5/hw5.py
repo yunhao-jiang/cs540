@@ -53,8 +53,24 @@ def q3f():
     """compute (X^T * X)^-1 * X^T * Y"""
     return np.dot(PI, Y)
 
+
 def q4(x):
     return hat_beta[0] + hat_beta[1] * x
+
+
+def q5(hat_beta):
+    if hat_beta[1] < 0:
+        return "<", "decreasing"
+    elif hat_beta[1] > 0:
+        return ">", "increasing"
+    else:
+        return "=", "constant"
+
+
+def q6(hat_beta):
+    """compute 0 = hat_beta[0] + hat_beta[1] * x, what is x?"""
+    return -hat_beta[0] / hat_beta[1]
+
 
 file_name = "toy.csv"
 with open(file_name, 'r') as file:
@@ -83,5 +99,13 @@ with open(file_name, 'r') as file:
     hat_beta = q3f()
     print(hat_beta)
 
-    print("Q4:")
-    print(q4(2022))
+    y_test = q4(2022)
+    print("Q4: " + str(y_test))
+
+    q5a, q5b = q5(hat_beta)
+    print("Q5a: " + q5a)
+    print("Q5b: The number of frozen days on Lake Mendota is " + q5b + ".")
+
+    q6a = q6(hat_beta)
+    print("Q6a: " + str(q6a))
+    print("Q6b: x is not compelling because the dataset is too small.")
