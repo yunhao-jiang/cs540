@@ -18,7 +18,7 @@ def load_visualize(file):
     plt.plot(years, days)
     plt.xlabel("Year")
     plt.ylabel("Number of frozen days")
-    plt.show()
+    plt.savefig("plot.jpg")
 
 
 def q3a():
@@ -108,4 +108,7 @@ with open(file_name, 'r') as file:
 
     q6a = q6(hat_beta)
     print("Q6a: " + str(q6a))
-    print("Q6b: x is not compelling because the dataset is too small.")
+    print("Q6b: x is compelling because the number of frozen days is decreasing, which will "
+          "eventually be 0 in the future.")
+
+    file.close()
