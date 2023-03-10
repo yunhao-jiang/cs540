@@ -72,43 +72,44 @@ def q6(hat_beta):
     return -hat_beta[0] / hat_beta[1]
 
 
-file_name = sys.argv[1]
-with open(file_name, 'r') as file:
-    load_visualize(file)
-    print("Q3a:")
-    X = q3a()
-    print(X)
+if __name__ == "__main__":
+    file_name = sys.argv[1]
+    with open(file_name, 'r') as file:
+        load_visualize(file)
+        print("Q3a:")
+        X = q3a()
+        print(X)
 
-    print("Q3b:")
-    Y = q3b()
-    print(Y)
+        print("Q3b:")
+        Y = q3b()
+        print(Y)
 
-    print("Q3c:")
-    Z = q3c(X)
-    print(Z)
+        print("Q3c:")
+        Z = q3c(X)
+        print(Z)
 
-    print("Q3d:")
-    I = q3d(Z)
-    print(I)
+        print("Q3d:")
+        I = q3d(Z)
+        print(I)
 
-    print("Q3e:")
-    PI = q3e(I)
-    print(PI)
+        print("Q3e:")
+        PI = q3e(I)
+        print(PI)
 
-    print("Q3f:")
-    hat_beta = q3f()
-    print(hat_beta)
+        print("Q3f:")
+        hat_beta = q3f()
+        print(hat_beta)
 
-    y_test = q4(2022)
-    print("Q4: " + str(y_test))
+        y_test = q4(2022)
+        print("Q4: " + str(y_test))
 
-    q5a, q5b = q5(hat_beta)
-    print("Q5a: " + q5a)
-    print("Q5b: The number of frozen days on Lake Mendota is " + q5b + ".")
+        q5a, q5b = q5(hat_beta)
+        print("Q5a: " + q5a)
+        print("Q5b: The number of frozen days on Lake Mendota is " + q5b + ".")
 
-    q6a = q6(hat_beta)
-    print("Q6a: " + str(q6a))
-    print("Q6b: x is compelling because the number of frozen days is decreasing, which will "
-          "eventually be 0 in the future.")
+        q6a = q6(hat_beta)
+        print("Q6a: " + str(q6a))
+        print("Q6b: x is compelling because the number of frozen days is decreasing, which will "
+              "eventually be 0 in the future.")
 
-    file.close()
+        file.close()
